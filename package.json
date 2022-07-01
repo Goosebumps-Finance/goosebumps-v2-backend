@@ -1,0 +1,67 @@
+{
+  "name": "goosebumps-api",
+  "version": "0.1.0",
+  "description": "Goosebump Backend API",
+  "main": "src/index.js",
+  "private": true,
+  "engines": {
+    "node": ">=16",
+    "yarn": "*"
+  },
+  "scripts": {
+    "precommit": "yarn lint",
+    "web": "yarn start",
+    "start": "cross-env NODE_ENV=production node ./src/index.js",
+    "start-server": "npx cross-env NODE_ENV=production npx pm2 start ./src/index.js",
+    "dev": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "lint:fix": "yarn lint --fix",
+    "lint:watch": "yarn lint --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wongjapan/goosebumps-api.git"
+  },
+  "author": "Wong Japan <kulomilyarder@gmail.com>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/wongjapan/goosebumps-api/issues"
+  },
+  "homepage": "https://github.com/wongjapan/goosebumps-api#readme",
+  "devDependencies": {
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.7.0"
+  },
+  "dependencies": {
+    "add": "^2.0.6",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
+    "dotenv-safe": "^8.2.0",
+    "ethers": "^5.6.8",
+    "ethers-multicall": "^0.2.3",
+    "express": "^4.18.1",
+    "express-validation": "^4.1.0",
+    "fs": "*",
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.3.0",
+    "helmet": "^5.1.0",
+    "http-status": "^1.5.2",
+    "https": "^1.0.0",
+    "joi": "^17.6.0",
+    "lodash": "^4.17.21",
+    "method-override": "^3.0.0",
+    "moment-timezone": "^0.5.34",
+    "morgan": "^1.10.0",
+    "pm2": "^5.2.0",
+    "winston": "^3.7.2"
+  }
+}
