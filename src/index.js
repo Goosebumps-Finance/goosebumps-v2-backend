@@ -10,8 +10,8 @@ const app = require("./config/express");
  */
 
 const server = https.createServer({
-    key: fs.readFileSync('./certs/private.key'),
-    cert: fs.readFileSync('./certs/certificate.crt'),
+    key: fs.readFileSync('./src/certs/private.key'),
+    cert: fs.readFileSync('./src/certs/certificate.crt'),
 }, app)
 
 // listen to requests
