@@ -13,11 +13,24 @@ router.post("/gettrades", validate(GET_TRADES), async (req, res) => {
   const reqAddress = req.body[0];
   const reqNetwork = req.query.network;
   try {
-    const [buyTrades, sellTrades] = await Promise.all([
+    let [buyTrades, sellTrades] = await Promise.all([
       getBuyTrades(reqNetwork, reqAddress),
       getSellTrades(reqNetwork, reqAddress),
     ]);
-
+    if(buyTrades.status !== 200) {
+      buyTrades.tokens = [];
+      res.status(httpStatus.SERVICE_UNAVAILABLE);
+      res.json(buyTrades);
+      return;
+    } 
+    if (sellTrades.status !== 200) {
+      sellTrades.tokens = [];
+      res.status(httpStatus.SERVICE_UNAVAILABLE);
+      res.json(sellTrades);
+      return;
+    }
+    buyTrades = buyTrades.result;
+    sellTrades = sellTrades.result;
     buyTrades.ethereum.buy.map((x) => {
       x.transactionType = 1;
       return x;
@@ -130,8 +143,12 @@ router.post("/gettrades", validate(GET_TRADES), async (req, res) => {
 
       return r;
     });
-
-    res.json(result);
+    const finalRes = {
+      status: 200,
+      tokens: result
+    }
+    console.log("finalRes = ", finalRes)
+    res.json(finalRes);
   } catch (error) {
     res.status(httpStatus.SERVICE_UNAVAILABLE);
     res.json(error.message);

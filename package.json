@@ -13,6 +13,7 @@
     "web": "yarn start",
     "start": "cross-env NODE_ENV=production node ./src/index.js",
     "start-server": "npx cross-env NODE_ENV=production npx pm2 start ./src/index.js",
+    "stop-server": "npx pm2 stop ./src/index.js",
     "dev": "nodemon ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",

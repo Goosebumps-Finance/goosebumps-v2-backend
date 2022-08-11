@@ -3,6 +3,7 @@ const { getNetwork } = require("../../onChainProviders");
 
 const BITQUERY_ENDPOINT = "https://graphql.bitquery.io";
 const BITQUERY_API = "BQYs1yL4DniyLSvloH4zxulMTH6A0e3i";
+// const BITQUERY_API = "BQYuLyenH5JOov1Fi6NrzGnPnoEYS35j";
 
 const inOutQueries = async (network, address) => {
   let gql = `query (
@@ -130,13 +131,24 @@ const getBuyTrades = async (networkName, address) => {
     "x-api-key": BITQUERY_API,
   };
 
-  const result = await request({
-    url: BITQUERY_ENDPOINT,
-    document: gql,
-    variables: variables,
-    requestHeaders: headers,
-  });
-  return result;
+  try {
+    const result = await request({
+      url: BITQUERY_ENDPOINT,
+      document: gql,
+      variables: variables,
+      requestHeaders: headers,
+    });
+    return {
+      status: 200,
+      result
+    };
+  } catch(err) {
+    console.log("getBuyTrades err response=",err.response);
+    if(err.response.errors.length!==0) 
+      return { status: 201, error: err.response.errors[0]}
+    return { status: err.response.status, error: err.response.error}
+  }
+  
 };
 
 const getSellTrades = async (networkName, address) => {
@@ -186,13 +198,24 @@ const getSellTrades = async (networkName, address) => {
     "x-api-key": BITQUERY_API,
   };
 
-  const result = await request({
-    url: BITQUERY_ENDPOINT,
-    document: gql,
-    variables: variables,
-    requestHeaders: headers,
-  });
-  return result;
+  try {
+    const result = await request({
+      url: BITQUERY_ENDPOINT,
+      document: gql,
+      variables: variables,
+      requestHeaders: headers,
+    });
+    return {
+      status: 200,
+      result
+    };
+  } catch(err) {
+    console.log("getSellTrades error=", err.response)
+    if(err.response.errors.length!==0) 
+      return { status: 201, error: err.response.errors[0]}
+    return { status: err.response.status, error: err.response.error}
+  }
+  
 };
 
 const getOHLC = async (args) => {
