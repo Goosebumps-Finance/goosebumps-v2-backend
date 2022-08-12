@@ -147,7 +147,6 @@ router.post("/gettrades", validate(GET_TRADES), async (req, res) => {
       status: 200,
       tokens: result
     }
-    console.log("finalRes = ", finalRes)
     res.json(finalRes);
   } catch (error) {
     res.status(httpStatus.SERVICE_UNAVAILABLE);
