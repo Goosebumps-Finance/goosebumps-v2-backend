@@ -1,9 +1,14 @@
 const { request } = require("graphql-request");
 const { getNetwork } = require("../../onChainProviders");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 
 const BITQUERY_ENDPOINT = "https://graphql.bitquery.io";
-const BITQUERY_API = "BQYs1yL4DniyLSvloH4zxulMTH6A0e3i";
+// const BITQUERY_API = "BQYs1yL4DniyLSvloH4zxulMTH6A0e3i";
 // const BITQUERY_API = "BQYuLyenH5JOov1Fi6NrzGnPnoEYS35j";
+const BITQUERY_API = process.env.BITQUERY_API;
 
 const inOutQueries = async (network, address) => {
   let gql = `query (
