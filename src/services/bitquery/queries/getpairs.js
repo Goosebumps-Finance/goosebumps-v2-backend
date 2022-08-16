@@ -3,6 +3,7 @@ const { getNetwork } = require("../../onChainProviders");
 
 const BITQUERY_ENDPOINT = "https://graphql.bitquery.io";
 const BITQUERY_API = "BQYs1yL4DniyLSvloH4zxulMTH6A0e3i";
+// const BITQUERY_API = "BQYuLyenH5JOov1Fi6NrzGnPnoEYS35j";
 
 const getPairsData = async (networkName, address) => {
   const network = getNetwork(networkName);
