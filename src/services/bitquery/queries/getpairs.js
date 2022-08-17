@@ -93,7 +93,7 @@ const isTokenOrNot = async (networkName, address) => {
     requestHeaders: headers,
   });
 
-  return response.ethereum.address[0].smartContract == null ? false : true;
+  return response.ethereum.address[0].smartContract;
 };
 
 module.exports = {
