@@ -145,7 +145,8 @@ router.post("/gettrades", validate(GET_TRADES), async (req, res) => {
     });
     const finalRes = {
       status: 200,
-      tokens: result
+      tokens: result,
+      address: reqAddress
     }
     res.json(finalRes);
   } catch (error) {

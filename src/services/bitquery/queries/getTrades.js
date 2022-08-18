@@ -149,8 +149,8 @@ const getBuyTrades = async (networkName, address) => {
     };
   } catch(err) {
     console.log("getBuyTrades err response=",err.response);
-    if(err.response.errors.length!==0) 
-      return { status: 201, error: err.response.errors[0]}
+    if(err.response.errors) 
+      return { status: 201, error: err.response.errors}
     return { status: err.response.status, error: err.response.error}
   }
   

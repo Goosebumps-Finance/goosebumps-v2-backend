@@ -85,15 +85,25 @@ const isTokenOrNot = async (networkName, address) => {
     accept: "application/json",
     "x-api-key": BITQUERY_API,
   };
+  try {
+    const response = await request({
+      url: BITQUERY_ENDPOINT,
+      document: gql,
+      variables: variables,
+      requestHeaders: headers,
+    });
+    return {
+      status: 200,
+      result: response.ethereum.address[0].smartContract
+    }
+  } catch(err) {
+    console.log("isTokenOrNot err=", err.response);
+    if(err.response.errors)
+      return { status: 201, error: err.response.errors }
+    return { status: err.response.status, error: err.response.error }
+  }
+  
 
-  const response = await request({
-    url: BITQUERY_ENDPOINT,
-    document: gql,
-    variables: variables,
-    requestHeaders: headers,
-  });
-
-  return response.ethereum.address[0].smartContract;
 };
 
 module.exports = {
