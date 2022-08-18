@@ -1,19 +1,17 @@
 // make bluebird default Promise
 const { port, env } = require("./config/vars");
-const fs = require('fs')
-const https = require('https')
+// const fs = require('fs')
+// const https = require('https')
 const logger = require("./config/logger");
 const app = require("./config/express");
 
-////////////////////////////////////////////
+// /**
+//  * Create HTTPS server.
+//  */
 
-/**
- * Create HTTPS server.
- */
-
-// const server = https.createServer({
-//     key: fs.readFileSync('/certs/private.key'),
-//     cert: fs.readFileSync('/certs/certificate.crt'),
+//  const server = https.createServer({
+//     key: fs.readFileSync('/etc/letsencrypt/live/cryptosnowprince.com/privkey.pem'),
+//     cert: fs.readFileSync('/etc/letsencrypt/live/cryptosnowprince.com/fullchain.pem'),
 // }, app)
 
 // // listen to requests
@@ -24,8 +22,6 @@ const app = require("./config/express");
 //  * @public
 //  */
 // module.exports = server;
-
-////////////////////////////////////////////
 
 /**
  * Create HTTP server.
