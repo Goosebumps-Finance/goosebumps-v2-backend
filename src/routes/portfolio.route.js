@@ -42,6 +42,7 @@ router.post("/gettrades", validate(GET_TRADES), async (req, res) => {
     });
 
     let data = _.concat(sellTrades.ethereum.sell, buyTrades.ethereum.buy);
+    data = _.filter(data, (x) => x.buyCurrency.tokenType === "ERC20" && x.sellCurrency.tokenType === "ERC20");
     data = _.orderBy(
       data,
       [

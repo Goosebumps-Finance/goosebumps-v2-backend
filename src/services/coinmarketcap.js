@@ -1,5 +1,7 @@
 const axios = require("axios");
+const dotenv = require("dotenv");
 const CMC_ENDPOINT = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?address=";
+const CMC_PRO_API_KEY = process.env.CMC_PRO_API_KEY;
 
 const getCmcInfo = async (addr) => {
   const api_url = `${CMC_ENDPOINT}${addr}`;
@@ -7,7 +9,7 @@ const getCmcInfo = async (addr) => {
   try {
     response = await axios.get(api_url, {
       headers: {
-        "X-CMC_PRO_API_KEY": "231794b7-091b-44e3-8e0e-843cfca02cc9",
+        "X-CMC_PRO_API_KEY": CMC_PRO_API_KEY,
       },
     });
   } catch (ex) {

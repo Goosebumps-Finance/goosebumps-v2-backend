@@ -104,11 +104,13 @@ const getBuyTrades = async (networkName, address) => {
         address
         name
         symbol
+        tokenType
       }
       sellCurrency: buyCurrency {
         address
         name
         symbol
+        tokenType
       }
       bnbAmount: buyAmount
       totalUSD: buyAmount(in: USD)
@@ -170,11 +172,13 @@ const getSellTrades = async (networkName, address) => {
         address
         name
         symbol
+        tokenType
       }
       buyCurrency {
         address
         name
         symbol
+        tokenType
       }
       tokenAmount: buyAmount
       bnbAmount: sellAmount
